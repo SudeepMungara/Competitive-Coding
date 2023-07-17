@@ -1,2 +1,2 @@
 # Competitive-Coding
-Solutions based on SQL and Pythonfrom sites like Data Lemur, Hackerrank, and Leetcode
+Solutions based on SQL and Python from sites like Data Lemur, Hackerrank, and Leetcode
