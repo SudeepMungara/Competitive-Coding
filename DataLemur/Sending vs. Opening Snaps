@@ -1,0 +1,27 @@
+WITH send as(
+SELECT age_bucket,activity_type,SUM(time_spent) as send_time 
+FROM activities a
+INNER JOIN age_breakdown ab
+ON a.user_id = ab.user_id
+WHERE activity_type = 'send'
+GROUP BY age_bucket,activity_type),
+
+open as(
+SELECT age_bucket,activity_type,SUM(time_spent) as open_time 
+FROM activities a
+INNER JOIN age_breakdown ab
+ON a.user_id = ab.user_id
+WHERE activity_type = 'open'
+GROUP BY age_bucket,activity_type)
+
+SELECT distinct send.age_bucket,
+CASE
+    WHEN send.activity_type='send' THEN ROUND((send.send_time/(send.send_time+open.open_time))*100.00,2)
+END as send_perc,
+CASE
+    WHEN open.activity_type='open' THEN ROUND((open.open_time/(send.send_time+open.open_time))*100.00,2)
+END as open_perc
+FROM send
+INNER JOIN open
+ON send.age_bucket = open.age_bucket
+    
