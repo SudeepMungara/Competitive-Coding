@@ -1,0 +1,14 @@
+WITH avg_salary(title,salary) as (
+  SELECT title,avg(salary) FROM employee_pay
+  group by title
+) 
+
+SELECT * FROM(
+SELECT employee_id,
+salary,
+CASE
+  WHEN salary>2*(SELECT salary from avg_salary WHERE title = ep.title) THEN 'Overpaid'    
+  WHEN salary<(SELECT salary from avg_salary WHERE title = ep.title)/2 THEN 'Underpaid'
+END as status
+FROM employee_pay ep) a
+WHERE status in ('Overpaid','Underpaid')
