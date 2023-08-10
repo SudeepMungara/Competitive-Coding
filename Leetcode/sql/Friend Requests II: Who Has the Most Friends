@@ -1,0 +1,10 @@
+with requester_and_accepter_count as(
+select requester_id from requestaccepted
+union all
+select accepter_id from requestaccepted
+)
+
+select requester_id as id,count(requester_id) as num from requester_and_accepter_count
+group by requester_id
+order by count(requester_id) desc
+limit 1
