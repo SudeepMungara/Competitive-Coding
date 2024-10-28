@@ -1,0 +1,5 @@
+select tweet_num as tweet_bucket, count(user_id) as users_num from( 
+SELECT user_id,count(user_id) as tweet_num FROM tweets
+where extract(year from tweet_date)=2022
+GROUP BY user_id) a
+GROUP BY tweet_bucket
