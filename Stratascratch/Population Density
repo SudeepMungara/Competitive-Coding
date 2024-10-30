@@ -1,0 +1,11 @@
+# Import your libraries
+import pandas as pd
+
+# Start writing code
+cities_population.head()
+cities_population = cities_population.loc[cities_population['area']!=0]
+cities_population['density'] = cities_population.apply(lambda x:round(int(x['population']) / int(x['area'])),axis=1)
+cities_population = cities_population[[ 'city', 'country', 'density']].sort_values('density',ascending=False)
+max_df = cities_population[cities_population['density']==cities_population['density'].max()]
+min_df = cities_population[cities_population['density']==cities_population['density'].min()]
+pd.concat([max_df,min_df],axis=0)
