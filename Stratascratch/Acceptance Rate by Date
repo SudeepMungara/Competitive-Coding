@@ -1,0 +1,8 @@
+select s.date,
+       count(a.user_id_receiver)/count(s.user_id_sender)::decimal AS percentage_acceptance 
+from
+(select * from fb_friend_requests where action= 'sent') s 
+left join 
+(select * from fb_friend_requests where action= 'accepted') a 
+on s.user_id_sender=a.user_id_sender and s.user_id_receiver=a.user_id_receiver 
+group by s.date
