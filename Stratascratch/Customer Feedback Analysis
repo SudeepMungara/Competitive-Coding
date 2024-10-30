@@ -1,0 +1,7 @@
+# Import your libraries
+import pandas as pd
+
+# Start writing code
+customer_feedback.head()
+customer_feedback.drop_duplicates(inplace=True)
+customer_feedback.query("source_channel=='social_media' and comment_category!='short_comments'")
