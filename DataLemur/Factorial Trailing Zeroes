@@ -1,0 +1,15 @@
+def factorial(n):
+  if n>0:
+    return n*factorial(n-1)
+  else:
+    return 1
+    
+def trailing_zeroes(n):
+  fact_val = factorial(n)
+  div = 10
+  count = 0
+  while fact_val % div ==0:
+    div = div*10
+    count = count+1
+  
+  return count
