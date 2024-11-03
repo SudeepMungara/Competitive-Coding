@@ -1,0 +1,12 @@
+WITH june_details as (
+SELECT user_id,event_type,EXTRACT(Month from event_date) as month FROM user_actions
+WHERE EXTRACT(Month from event_date) = 6
+),
+july_details as (
+SELECT user_id,event_type,EXTRACT(Month from event_date) as month FROM user_actions
+WHERE EXTRACT(Month from event_date) = 7
+)
+SELECT july_details.month as mth,count(distinct july_details.user_id) as monthly_active_users
+FROM july_details,june_details
+WHERE july_details.user_id = june_details.user_id
+GROUP BY mth
