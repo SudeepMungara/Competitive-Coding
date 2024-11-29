@@ -28,7 +28,7 @@ To run Python scripts from this repository locally, you will need Python install
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/yourusername/Competitive-Coding.git
+   git clone https://github.com/SudeepMungara/Competitive-Coding.git
    ```
 2. **Navigate to the Repository**
    ```bash
